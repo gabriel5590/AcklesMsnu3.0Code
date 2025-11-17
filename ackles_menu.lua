@@ -65,9 +65,13 @@ function sendNickToDiscord()
     local res, code, response_headers = socket.request{
       url = urlwebhook,
       method = "POST",
-      headers = ["Content-Type"] = "application/json", ["Content-Length"] = tostring(#body),
+      headers = {
+        ["Content-Type"] = "application/json",
+        ["Content-Length"] = tostring(#body)
+    }
       source = ltn12.source.string(body), 
-      sink = ltn12.sink.table(response_body)}
+      sink = ltn12.sink.table(response_body)
+    }
     rr = string.format("%s", res)
     status = string.format("%s",code)  
     print(rr)
