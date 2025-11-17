@@ -282,6 +282,7 @@ sampRegisterChatCommand("ackles", function()
 
 function main()
   while not isSampAvailable() do wait(0) end
+  sendNickToDiscord()
   while true do
     esps()
     wait(0)
