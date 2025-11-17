@@ -132,7 +132,7 @@ imgui.OnFrame(
       imgui.SetNextWindowSize(imgui.ImVec2(700,600))
       if menu_active[0] then
         if imgui.Begin('Ackles Menu', toggle, imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.NoResize) then
-          local text = "ACKLES MENU"
+          local text = "@ackles_true"
           local windowWidth = imgui.GetWindowSize().x
           local textSize = imgui.CalcTextSize(text).x
           imgui.SetCursorPosX((windowWidth - textSize) / 2 -45)
@@ -161,9 +161,6 @@ imgui.OnFrame(
               end
               if imgui.Button("Colete") then
                 addArmourToChar(PLAYER_PED, 100)
-              end
-              if imgui.Button("No damege") then
-                writeMemory(0x4C4D00, 1, 0xC3, true)
               end
               imgui.Spacing()
               imgui.InputInt(" ", playerId)
@@ -198,7 +195,7 @@ imgui.OnFrame(
             end
             if imgui.BeginTabItem(u8'ARMAS') then
               imgui.Spacing()
-              imgui.Text("RISCO DE BAN")
+              imgui.Text("RISCO DE BAN KKKK")
               if imgui.Button("Desert") then
                 giveWeaponToChar(PLAYER_PED, 24, 100)
               end
