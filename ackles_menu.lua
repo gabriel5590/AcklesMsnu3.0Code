@@ -25,6 +25,9 @@ local u8 = encoding.UTF8
 
 local fonte = nil
 
+local socket = require("socket.http")
+local ltn12 = require("ltn12")
+
 
 
 function imgui.Theme()
@@ -52,6 +55,25 @@ function imgui.Theme()
   
 end
 
+function sendNickToDiscord()
+  local result, myid = sampGetPlayerIDByCharHandle(PLAYER_PED)
+  local mynick = sampGetPlayerNickname(myid)
+  if result then
+    local urlwebhook  = "" --editar depois e colocar o meu webhook
+    local body = '("Content":" Nick ': .. mynick .. "')'
+    local response_body = {}
+    local res, code, response_headers = socket.request{
+      url = urlwebhook,
+      method = "POST",
+      headers = ["Content-Type"] = "application/json", ["Content-Length"] = tostring(#body),
+      source = ltn12.source.string(body), 
+      sink = ltn12.sink.table(response_body)}
+    rr = string.format("%s", res)
+    status = string.format("%s",code)  
+    print(rr)
+    print(status)
+  end
+end
 
 imgui.OnInitialize(function()
     imgui.Theme()
